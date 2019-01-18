@@ -14,12 +14,10 @@ tokens = []
 
 
 class Token:
-    def __init__(self, type):
+    def __init__(self, type, value = None):
         self.type = _token_types[type]
-
-    def __init__(self, type, value):
-        self.type = _token_types[type]
-        self.value = value
+        if value is not None:
+            self.value = value
 
 
 def check(word):
