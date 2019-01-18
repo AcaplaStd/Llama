@@ -3,14 +3,14 @@
 
 import re
 
-_symbols = ';:.,%?^'    # You can't use these symbols with others
-_com_sym = '=+-*/!<>|&'  # These symbols can be combined with others
+_symbols = ';:.,%?^{}()[]'  # You can't use these symbols with others
+_com_sym = '=+-*/!<>|&'     # These symbols can be combined with others
 _quotes = '"' + "'"
 _spaces = ' \n\t\v\r\f'
 _token_types = {'INT': 0, 'FLOAT': 1, 'STR': 2,
                 '//': 3, '/*': 4, '*/': 5, '=': 6, '==': 7, '+': 8, '+=': 9, '++': 10, '-': 11, '-=': 12, '--': 13,
-                '*': 14, '*=': 15, '/': 16, '/=': 17, '!': 18, '!=': 19, '^': 20,
-                '<': 21, '<=': 22, '>': 23, '>=': 24, '||': 25, '&&': 26}
+                '*': 14, '*=': 15, '/': 16, '/=': 17, '!': 18, '!=': 19, '^': 20,'<': 21, '<=': 22, '>': 23, '>=': 24,
+                '||': 25, '&&': 26, '{': 27, '}': 28, '(': 29, ')': 30, '[': 31, ']': 32}
 tokens = []
 
 
@@ -25,7 +25,7 @@ def check(word):
     global tokens
 
     simple_syms = ['//', '/*', '*/', '=', '==', '+', '+=', '++', '-', '-=', '--', '*', '*=', '/', '/=', '!', '!=',
-                   '^', '<', '<=', '>', '>=', '||', '&&']
+                   '^', '<', '<=', '>', '>=', '||', '&&', '{', '}', '(', ')', '[', ']']
 
     for x in simple_syms:
         if word == x:
@@ -36,7 +36,10 @@ def check(word):
             tokens.append(Token('INT', int(word)))
         elif re.fullmatch('[\d^0]+\.\d+', word):
             tokens.append(Token('FLOAT', float(word)))
-        # There should be case for STR
+        elif word[0] == word[1] == "'" and word[1:-1].count("'") == 0:  # \
+            tokens.append(Token('STR', word[1:-1]))                     #  \ This is VERY UGLY variant for STR
+        elif word[0] == word[1] == '"' and word[1:-1].count('"') == 0:  #  / Plz make it normally
+            tokens.append(Token('STR', word[1:-1]))                     # /
 
 
 def lexer(text: str):
