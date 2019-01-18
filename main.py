@@ -14,9 +14,8 @@ if __name__ == '__main__':
             text = '\n'.join(text)
     else:
         print('\nERROR!\n')
-        # text = ''
-        # e = ''
-        # while e != __end_word:
-        #     e = input()
-        #     text += e + '\n'
-        # text = text[:-1]
+        # Tm_A_T wants code to be done after each Enter pushed
+        # But I can't do it!
+        # Plz, Tm_A_T, do all your own ideas for yourself
+
+    T = Lexer.lexer(text)
