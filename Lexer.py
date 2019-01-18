@@ -3,9 +3,13 @@
 
 import re
 
+_symbols = ';:,|&%#'    # You can't use these symbols with others
+# _com_sym = '=+-*/!<>?\' # These symbols can be combined with others
+_quotes = '"' + "'"
 _spaces = ' \n\t\v\r'
 _token_types = {'//': 0, '/*': 1, '*/': 2,
-                'INT': 3, 'FLOAT': 4, 'STR': 5}
+                'INT': 3, 'FLOAT': 4, 'STR': 5,
+                ';': 6}
 tokens = []
 
 
@@ -38,10 +42,23 @@ def check(word):
 def lexer(text: str):
     buffer = ''
     i = 0
+    string = False
+    quote = ''
     while i < len(text):
         c = text[i]
-        if c in _spaces:
-            check(buffer)
-            buffer = ''
-        else:
+        if string:
             buffer += c
+            if c == quote:
+                check(buffer)
+                buffer = ''
+                string = False
+        else:
+            if c in _spaces:
+                check(buffer)
+                buffer = ''
+            elif c in _quotes:
+                string = True
+                buffer += c
+
+            else:
+                buffer += c
