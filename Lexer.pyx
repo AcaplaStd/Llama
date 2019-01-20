@@ -7,7 +7,7 @@
 from libcpp cimport bool
 
 import re
-import main
+import common
 
 cdef str _symbols = ';:.,%?^{}()[]'  # You can't use these symbols with others
 cdef str _com_sym = '=+-*/!<>|&'     # These symbols can be combined with others
@@ -63,7 +63,7 @@ cdef void check(str word):
 
         else:
             if word[0].isdigit():
-                main.ERROR('Illegal word ' + word, 111)
+                common.ERROR('Illegal word ' + word, 111)
             else:
                 tokens.append(Token('WORD', word))
 
