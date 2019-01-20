@@ -29,6 +29,13 @@ class Token:
         if value is not None:
             self.value = value
 
+    def printIt(self):
+        if hasattr(self, 'value'):
+            print("ttype = "+str(self.ttype)+", value = " + str(self.value))
+        else:
+            print("ttype = "+str(self.ttype))
+
+
 cdef void check(str word):
     global tokens
 

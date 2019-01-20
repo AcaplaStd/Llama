@@ -3,6 +3,7 @@
 
 import sys, os
 import Lexer
+import Parser
 
 
 def ERROR(string, code=1):
@@ -20,10 +21,12 @@ if __name__ == '__main__':
         with open(fileName) as f:
             text = f.readlines()
             text = '\n'.join(text)
+
+            T = Lexer.lexer(text)
+            for t in T:
+                t.sstr__()
     else:
         ERROR('No filename found', 228)
         # Tm_A_T wants code to be done after each Enter pushed
         # But I can't do it!
         # Plz, Tm_A_T, do all your own ideas for yourself
-
-    T = Lexer.lexer(text)
