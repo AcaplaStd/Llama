@@ -1,10 +1,10 @@
 # Llama - list-oriented programming language
 # (C) Acapla Studios
 
-import sys, os
+import sys
 import Lexer
-import Parser
 import common
+import Parser.Parser
 
 
 __end_word = 'end'
