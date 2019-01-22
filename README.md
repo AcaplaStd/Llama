@@ -12,7 +12,7 @@ for int i = 1 to 10 step 2 {
 }
 ```
 
-####Recommended official file extension for Llama code is ```.llm```
+Recommended official file extension for Llama code is ```.llm```
 
 ---
 ###### This language is still in developing. About all bugs please inform us, Acapla Studios.
