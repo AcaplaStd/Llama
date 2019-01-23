@@ -112,7 +112,7 @@ cdef list _lexer(str text):
                 buff = c
             else:
                 buff += c
-            i += 1
+        i += 1
     return tokens
 
 def lexer(text):

@@ -10,6 +10,7 @@ ast = []
 in_for = False
 # ------------flags-segment--------------------------------------------------------------------------------
 
+
 def parse(T):
     global ast
     for token in T:

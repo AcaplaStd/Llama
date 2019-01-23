@@ -17,6 +17,9 @@ if __name__ == '__main__':
             text = '\n'.join(text)
 
             T = Lexer.lexer(text)
+            # For lexer tests
+            # for t in T:
+            #     t.printIt()
             AST = Parser.parse(T)
     else:
         common.ERROR('No filename found', 228)
