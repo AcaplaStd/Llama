@@ -5,7 +5,7 @@ import common
 
 class node_for:
     """
-    for <name of new var> : <expression from> to <expression to> step <expression step>
+    for <name of new var> = <expression from> to <expression to> step <expression step>
     {
         <inside>
     }
@@ -20,7 +20,7 @@ class node_for:
 
     def _add_token(self, token):
         if self.moment == 0:
-            if token.ttype == 45:
+            if token.ttype == 45:  # WORD
                 self.moment = 1
             else:
                 common.ERROR(
@@ -39,5 +39,18 @@ class node_for:
         elif self.moment == 3:
             if token.ttype == 43:  # step
                 self.moment = 4
+            elif token.ttype == 27:  # {
+                self.moment = 5
             else:
                 self.to += token
+        elif self.moment == 4:
+            if token.ttype == 27:  # {
+                self.moment = 5
+            else:
+                self.step += token
+        elif self.moment == 5:
+            if token.ttype == 28: # }
+                # self.moment = 6 # the end!
+                return True
+            else:
+                self.inside += token

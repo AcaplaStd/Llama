@@ -6,8 +6,13 @@ from Parser.For import node_for
 
 ast = []
 
+# ------------flags-segment--------------------------------------------------------------------------------
+in_for = False
+# ------------flags-segment--------------------------------------------------------------------------------
 
-def _parse(T):
-    for _token in  T:
-        if _token.ttype == 44: # For
+def parse(T):
+    global ast
+    for token in T:
+        if token.ttype == 44:  # For
             pass
+    return ast

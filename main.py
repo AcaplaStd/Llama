@@ -4,7 +4,7 @@
 import sys
 import Lexer
 import common
-import Parser.Parser
+from Parser import Parser
 
 
 __end_word = 'end'
@@ -17,8 +17,7 @@ if __name__ == '__main__':
             text = '\n'.join(text)
 
             T = Lexer.lexer(text)
-            for t in T:
-                t.sstr__()
+            AST = Parser.parse(T)
     else:
         common.ERROR('No filename found', 228)
         # Tm_A_T wants code to be done after each Enter pushed
