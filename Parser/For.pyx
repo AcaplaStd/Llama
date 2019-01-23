@@ -18,9 +18,15 @@ cdef class node_for:
     """
 
     cdef list inside
+    cdef list _from
+    cdef list to
+    cdef list step
     cdef int moment
 
     def __init__(self):
+        self._from = []
+        self.to = []
+        self.step = []
         self.inside = []
         self.moment = 0
 
@@ -41,19 +47,19 @@ cdef class node_for:
             if token.ttype == 42:  # to
                 self.moment = 3
             else:
-                self._from = token
+                self._from += token
         elif self.moment == 3:
             if token.ttype == 43:  # step
                 self.moment = 4
             elif token.ttype == 27:  # {
                 self.moment = 5
             else:
-                self.to = token
+                self.to += token
         elif self.moment == 4:
             if token.ttype == 27:  # {
                 self.moment = 5
             else:
-                self.step = token
+                self.step += token
         elif self.moment == 5:
             if token.ttype == 28: # }
                 # self.moment = 6 # the end!
