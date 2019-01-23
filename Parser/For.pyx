@@ -1,9 +1,15 @@
+# cython: language_level=3
+# distutils: language = c++
+
 # Llama - list-oriented programming language
 # (C) Acapla Studios
 
-import common
+from libcpp cimport bool
 
-class node_for:
+import common
+from Lexer import Token
+
+cdef class node_for:
     """
     for <name of new var> = <expression from> to <expression to> step <expression step>
     {
@@ -11,14 +17,14 @@ class node_for:
     }
     """
 
+    cdef list inside
+    cdef int moment
+
     def __init__(self):
-        self.step = None
-        self.to = None
-        self._from = None
         self.inside = []
         self.moment = 0
 
-    def _add_token(self, token):
+    cdef bool _add_token(self, token):
         if self.moment == 0:
             if token.ttype == 45:  # WORD
                 self.moment = 1
@@ -35,22 +41,23 @@ class node_for:
             if token.ttype == 42:  # to
                 self.moment = 3
             else:
-                self._from += token
+                self._from = token
         elif self.moment == 3:
             if token.ttype == 43:  # step
                 self.moment = 4
             elif token.ttype == 27:  # {
                 self.moment = 5
             else:
-                self.to += token
+                self.to = token
         elif self.moment == 4:
             if token.ttype == 27:  # {
                 self.moment = 5
             else:
-                self.step += token
+                self.step = token
         elif self.moment == 5:
             if token.ttype == 28: # }
                 # self.moment = 6 # the end!
                 return True
             else:
                 self.inside += token
+        return False
