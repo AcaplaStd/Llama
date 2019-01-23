@@ -6,8 +6,8 @@
 
 from libcpp cimport bool
 
+
 import common
-from Lexer import Token
 
 cdef class node_for:
     """
@@ -22,6 +22,7 @@ cdef class node_for:
     cdef list to
     cdef list step
     cdef int moment
+    # def str var # C has not string class
 
     def __init__(self):
         self._from = []
@@ -34,6 +35,7 @@ cdef class node_for:
         if self.moment == 0:
             if token.ttype == 45:  # WORD
                 self.moment = 1
+                self.var = token.value
             else:
                 common.ERROR(
                     "You need to input new variable name before \":\" symbol")
@@ -66,4 +68,3 @@ cdef class node_for:
                 return True
             else:
                 self.inside += token
-        return False

@@ -1,6 +1,11 @@
 # Llama
-execute 
-```python setup.py build_ext --inplace```
+Execute 
+```
+python setup.py build_ext --inplace
+cd Parser
+python setup.py build_ext --inplace
+cd ..
+```
 to build cython files
 
 ## Llama is an open-source programming language for your needs

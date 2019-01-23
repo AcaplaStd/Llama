@@ -16,12 +16,9 @@ cdef bool in_for = False
 # ------------flags-segment--------------------------------------------------------------------------------
 
 
-cdef list _parse(list T):
+cdef list parse(list T):
     global ast
     for token in T:
         if token.ttype == 44:  # For
             pass
     return ast
-
-def parse(T):
-    return _parse(T)
