@@ -68,3 +68,5 @@ cdef class node_for:
                 return True
             else:
                 self.inside += token
+
+
