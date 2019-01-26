@@ -4,7 +4,7 @@
 import sys
 import Lexer
 import common
-from Parser.Parser import parse
+from Parser.Parser import parse, debug
 
 
 __end_word = 'end'
@@ -21,6 +21,7 @@ if __name__ == '__main__':
             # for t in T:
             #     t.printIt()
             AST = parse(T, "main")
+            debug(AST)
     else:
         common.ERROR('No filename found', 228)
         # Tm_A_T wants code to be done after each Enter pushed

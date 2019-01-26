@@ -69,4 +69,12 @@ cdef class node_for:
             else:
                 self.inside += token
 
-
+    cdef list debug(self):
+        return [
+            "node_for",  # Name of node
+            [True, "var", self.var],  # [does not ast, name, value]
+            [False, "from", self._from],
+            [False, "to", self.to],
+            [False, "step", self.step],
+            [False, "inside", self.inside]
+        ]

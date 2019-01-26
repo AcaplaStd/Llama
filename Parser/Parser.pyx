@@ -39,3 +39,27 @@ cdef list parse(list T, str mode):
                 in_for = True
                 ast.append(node_for())  # new node would be at the end of list
     return ast
+
+cdef void debug(AST, level=1):
+    if level == 1:
+        print("<root>")
+
+    for node in AST:
+        cdef list node_result = node.debug()
+        cdef str node_name = node_result[0]
+        cdef str param_appending = ""
+        cdef bool was_name_writen = False
+        for params in node_result[1:]:
+            if params[0]:
+                param_appending += (" " + params[1] + "=\"" + str(params[2]) + "\"")
+            else:
+                if not was_name_writen:
+                    was_name_writen = True
+                    print(((level*4)*" ") + "<" + node_name + param_appending + ">")
+                print(((level*4+2)*" ") + "<" + params[1] + ">")
+                debug(params[2], level + 1)
+                print(((level*4+2)*" ") + "</" + params[1] + ">")
+        print(((level*4)*" ") + "</" + node_name + ">")
+
+    if level == 1:
+        print("</root>")
