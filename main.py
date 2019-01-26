@@ -20,7 +20,7 @@ if __name__ == '__main__':
             # For lexer tests
             # for t in T:
             #     t.printIt()
-            AST = parse(T)
+            AST = parse(T, "main")
     else:
         common.ERROR('No filename found', 228)
         # Tm_A_T wants code to be done after each Enter pushed
