@@ -17,12 +17,12 @@ cdef class node_for:
     }
     """
 
+    cdef str var
     cdef list inside
     cdef list _from
     cdef list to
     cdef list step
     cdef int moment
-    # def str var # C has not string class
 
     def __init__(self):
         self._from = []
