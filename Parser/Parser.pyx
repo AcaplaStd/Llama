@@ -26,10 +26,6 @@ cdef list parse(list T, str mode):
             if ast[-1]._add_token(token):
                 in_for = False  # Exit from node_for
 
-                # TODO: recursively browse
-                # How can i do it?
-                # I can use THIS def and call it for everyone node component
-                # Returned ast will be appended into node component's container
                 ast[-1]._from = parse(ast[-1]._from, "for_from")
                 ast[-1].to = parse(ast[-1].to, "for_to")
                 ast[-1].step = parse(ast[-1].step, "for_step")
