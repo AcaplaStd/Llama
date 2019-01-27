@@ -11,18 +11,22 @@ from Parser.Parser import parse, debug
 
 __end_word = 'end'
 
-cdef void _main(list argv):
-    if len(sys.argv) > 1:
-        cdef str fileName = argv[1]
+cdef void main(list argv):
+    cdef str fileName
+    cdef str text
+    cdef list T
+    cdef list AST
+    if len(argv) > 1:
+        fileName = argv[1]
         with open(fileName) as f:
-            cdef str text = f.readlines()
-            text = '\n'.join(text)
+            text = f.readlines()
+            text = ''.join(text)
 
-            cdef list T = Lexer.lexer(text)
+            T = Lexer.lexer(text)
             # For lexer tests
             # for t in T:
             #     t.printIt()
-            cdef list AST = parse(T, "main")
+            AST = parse(T, "main")
             debug(AST)
     else:
         common.ERROR('No filename found', 228)
