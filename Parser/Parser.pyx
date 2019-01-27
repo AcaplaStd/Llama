@@ -40,15 +40,20 @@ cdef list parse(list T, str mode):
                 ast.append(node_for())  # new node would be at the end of list
     return ast
 
-cdef void debug(AST, level=1):
+cdef void debug(list AST, int level=1):
     if level == 1:
         print("<root>")
 
+    cdef list node_result
+    cdef str node_name
+    cdef str param_appending
+    cdef bool was_name_writen
+
     for node in AST:
-        cdef list node_result = node.debug()
-        cdef str node_name = node_result[0]
-        cdef str param_appending = ""
-        cdef bool was_name_writen = False
+        node_result = node.debug()
+        node_name = node_result[0]
+        param_appending = ""
+        was_name_writen = False
         for params in node_result[1:]:
             if params[0]:
                 param_appending += (" " + params[1] + "=\"" + str(params[2]) + "\"")
