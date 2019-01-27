@@ -2,28 +2,7 @@
 # (C) Acapla Studios
 
 import sys
-import Lexer
-import common
-from Parser.Parser import parse, debug
-
-
-__end_word = 'end'
+import _main
 
 if __name__ == '__main__':
-    if len(sys.argv) > 1:
-        fileName = sys.argv[1]
-        with open(fileName) as f:
-            text = f.readlines()
-            text = '\n'.join(text)
-
-            T = Lexer.lexer(text)
-            # For lexer tests
-            # for t in T:
-            #     t.printIt()
-            AST = parse(T, "main")
-            debug(AST)
-    else:
-        common.ERROR('No filename found', 228)
-        # Tm_A_T wants code to be done after each Enter pushed
-        # But I can't do it!
-        # Plz, Tm_A_T, do all your own ideas for yourself
+    _main.main(sys.argv)
