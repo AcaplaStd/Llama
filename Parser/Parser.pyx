@@ -6,13 +6,8 @@
 
 from libcpp cimport bool
 
-from sys import setrecursionlimit
-
 import common
 from Parser.For import node_for
-
-setrecursionlimit(2147483647)  # Если кто захочет снести, я не возражаю
-
 
 cdef list parse(list T, str mode):
     cdef list ast = []  # This is recursively function

@@ -4,7 +4,7 @@
 # Llama - list-oriented programming language
 # (C) Acapla Studios
 
-import Lexer
+from Lexer.Lexer import lexer
 import common
 from Parser.Parser import parse, debug
 
@@ -18,9 +18,8 @@ cdef void main(list argv):
     cdef list AST
     if len(argv) > 1:
         fileName = argv[1]
-        with open(fileName) as f:
-            text = f.readlines()
-            text = ''.join(text)
+        with open(fileName, "r", "utf=8") as f:
+            text = f.read()
 
             T = Lexer.lexer(text)
             # For lexer tests
