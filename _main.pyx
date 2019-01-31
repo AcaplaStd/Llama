@@ -21,7 +21,7 @@ cdef void main(list argv):
         with open(fileName, "r", "utf=8") as f:
             text = f.read()
 
-            T = Lexer.lexer(text)
+            T = lexer(text)
             # For lexer tests
             # for t in T:
             #     t.printIt()

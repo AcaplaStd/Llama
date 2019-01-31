@@ -12,8 +12,9 @@ from Lexer.Token import Token
 from Lexer.Lexer_settings import *
 
 cdef list lexer (str text):
-    cdef list
-    cdef char last_symb = ""
+    cdef list future_tokens = []
+    # cdef bool last_symb_empty = True
+    cdef char last_symb
     for s in text:
         pass
 

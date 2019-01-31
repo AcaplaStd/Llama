@@ -6,5 +6,5 @@
 
 from libcpp cimport bool
 
-cdef list[char] digits = [ch for ch in "1234567890"]
-cdef list[char] letters = [ch for ch in "abcdefghijklmnopqrstuvwxyz"]
+cdef list digits = [ch for ch in "1234567890"]
+cdef list letters = [ch for ch in "abcdefghijklmnopqrstuvwxyz"]

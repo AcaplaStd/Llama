@@ -7,6 +7,7 @@ python setup.py build_ext --inplace
 cd ../Lexer
 python setup.py build_ext --inplace
 cd ..
+
 ```
 to build cython files
 
