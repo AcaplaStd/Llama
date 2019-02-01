@@ -14,16 +14,29 @@ from .Token import Token
 cdef list lexer (str text):
     cdef list future_tokens = []
     # cdef bool last_symb_empty = True
-    cdef bool f_sng_l_comment = False
-    cdef bool f_many_l_comment = False
+    cdef bool sng_l_comment = False
+    cdef bool many_l_comment = False
     cdef char last_symb
+    cdef str next_token
     for s in text:
-        if f_sng_l_comment:
-            pass
-        elif f_many_l_comment:
-            pass
+        if sng_l_comment:
+            if s == "\n":
+                sng_l_comment = False
+        elif many_l_comment:
+            if last_symb == "*" and  s == "/":
+                many_l_comment = False
         else:
-            pass
+            if last_symb == "/" :
+                if s == "/":
+                    sng_l_comment = True
+                    next_token = ""
+                elif s == "*":
+                    many_l_comment = True
+                    next_token = ""
+            else:
+                pass
+
+        last_symb = s
 
 # import re
 # import common
