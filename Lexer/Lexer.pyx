@@ -18,7 +18,12 @@ cdef list lexer (str text):
     cdef bool f_many_l_comment = False
     cdef char last_symb
     for s in text:
-        pass
+        if f_sng_l_comment:
+            pass
+        elif f_many_l_comment:
+            pass
+        else:
+            pass
 
 # import re
 # import common
