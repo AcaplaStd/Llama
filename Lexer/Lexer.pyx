@@ -8,12 +8,14 @@ from libcpp cimport bool
 
 import common
 
-from Lexer.Token import Token
-from Lexer.Lexer_settings import *
+from .Lexer_settings import *
+from .Token import Token
 
 cdef list lexer (str text):
     cdef list future_tokens = []
     # cdef bool last_symb_empty = True
+    cdef bool f_sng_l_comment = False
+    cdef bool f_many_l_comment = False
     cdef char last_symb
     for s in text:
         pass

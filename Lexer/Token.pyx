@@ -6,11 +6,13 @@
 
 from libcpp cimport bool
 
+from .Lexer_settings import token_types
+
 cdef class Token:
-    # def __init__(self, ttype, value=None):
-    #     self.ttype = _token_types[ttype]
-    #     if value is not None:
-    #         self.value = value
+    def __init__(self, ttype, value=None):
+        self.ttype = token_types[ttype]
+        if value is not None:
+            self.value = value
 
     def printIt(self):
         if hasattr(self, 'value'):

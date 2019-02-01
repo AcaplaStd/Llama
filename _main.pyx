@@ -4,9 +4,9 @@
 # Llama - list-oriented programming language
 # (C) Acapla Studios
 
-from Lexer.Lexer import lexer
+from .Lexer.Lexer import lexer
 import common
-from Parser.Parser import parse, debug
+from .Parser.Parser import parse, debug
 
 
 __end_word = 'end'

@@ -7,7 +7,7 @@
 from libcpp cimport bool
 
 import common
-from Parser.For import node_for
+from .For import node_for
 
 cdef list parse(list T, str mode):
     cdef list ast = []  # This is recursively function

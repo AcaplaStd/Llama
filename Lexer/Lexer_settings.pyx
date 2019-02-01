@@ -6,5 +6,7 @@
 
 from libcpp cimport bool
 
+cdef dict token_types= {}
+
 cdef list digits = [ch for ch in "1234567890"]
 cdef list letters = [ch for ch in "abcdefghijklmnopqrstuvwxyz"]
